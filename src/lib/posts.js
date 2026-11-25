@@ -32,11 +32,14 @@ export async function readLocalPosts() {
 export const readPendingPosts = () => readAllData('sync-posts');
 export const savePendingPost = (post) => writeData('sync-posts', post);
 
+// Solo los campos que aceptan las reglas de Firebase (las coordenadas GPS se quedan en el dispositivo).
+export const toFirebasePost = ({ id, title, location, image }) => ({ id, title, location, image });
+
 export async function sendPost(post) {
   const res = await fetch(POSTS_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(post)
+    body: JSON.stringify(toFirebasePost(post))
   });
   if (!res.ok) throw new Error('Error al enviar: ' + res.status);
   return res.json();

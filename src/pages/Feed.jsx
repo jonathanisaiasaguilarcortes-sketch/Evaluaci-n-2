@@ -23,7 +23,16 @@ export default function Feed() {
   const remoteLoaded = useRef(false);
 
   const refresh = useCallback(async () => {
-    setPending((await readPendingPosts()).map((p) => ({ ...p, pending: true })));
+    const stillPending = await readPendingPosts();
+    setPending(stillPending.map((p) => ({ ...p, pending: true })));
+
+    // Chrome deja de reintentar un Background Sync que falló varias veces:
+    // si quedan pendientes y hay red, se vuelve a pedir el envío.
+    if (hasBackgroundSync && stillPending.length && navigator.onLine) {
+      navigator.serviceWorker.ready
+        .then((reg) => reg.sync.register('sync-new-posts'))
+        .catch((err) => console.log('No se pudo reprogramar el envío:', err));
+    }
 
     // Datos locales primero (rápido y sin conexión)...
     readLocalPosts()

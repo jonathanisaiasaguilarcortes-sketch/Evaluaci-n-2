@@ -185,9 +185,14 @@ self.addEventListener('sync', function (event) {
           return fetch(POSTS_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify(post)
+            // Solo los campos que aceptan las reglas de Firebase
+            body: JSON.stringify({ id: post.id, title: post.title, location: post.location, image: post.image })
           }).then(function (res) {
-            if (!res.ok) throw new Error('Error al enviar: ' + res.status);
+            if (!res.ok) {
+              return res.text().then(function (detail) {
+                throw new Error('Error al enviar (' + res.status + '): ' + detail);
+              });
+            }
             return deleteItemFromData('sync-posts', post.id);
           }).then(function () {
             return notifySubscribers(post);
