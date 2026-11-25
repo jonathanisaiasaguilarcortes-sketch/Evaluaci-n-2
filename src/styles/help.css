@@ -1,0 +1,4 @@
+.help-page { max-width: 640px; margin: 0 auto; padding: 16px; }
+.help-page .mdl-button { margin: 10px; }
+.help-steps li { margin: 8px 0; line-height: 1.5; }
+.help-steps .material-icons { font-size: 18px; vertical-align: middle; }

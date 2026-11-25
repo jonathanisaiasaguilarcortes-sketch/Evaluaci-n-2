@@ -1,13 +1,26 @@
 {
-  "name": "proyecto_del_curso",
-  "version": "1.0.0",
-  "description": "App sencilla parecida a Instagram.",
-  "main": "index.js",
+  "name": "uteqgram",
+  "version": "2.0.0",
+  "private": true,
+  "description": "UTEQGram: aplicación web progresiva (PWA) en React para compartir momentos.",
+  "type": "module",
   "scripts": {
-    "start": "http-server -c-1"
+    "dev": "vite",
+    "build": "vite build && node scripts/build-sw.js",
+    "preview": "vite preview --port 4173"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "idb": "^8.0.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.7",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
-    "http-server": "14.1.1"
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^6.4.6"
   }
- 
 }

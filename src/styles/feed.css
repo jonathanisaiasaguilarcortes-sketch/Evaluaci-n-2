@@ -1,0 +1,103 @@
+.main-image {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
+.data-source { color: #757575; font-size: 13px; margin-top: -8px; }
+
+.floating-button {
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 30px;
+  padding-bottom: calc(30px + env(safe-area-inset-bottom));
+}
+
+.shared-moment-card.mdl-card {
+  margin: 10px auto;
+  width: 80%;
+  min-height: 0;
+}
+@media (min-width: 600px) { .shared-moment-card.mdl-card { width: 60%; } }
+@media (min-width: 1000px) { .shared-moment-card.mdl-card { width: 45%; } }
+
+.shared-moment-card .mdl-card__title {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  align-items: flex-end;
+}
+@media (min-height: 1000px) { .shared-moment-card .mdl-card__title { height: 220px; } }
+.shared-moment-card .mdl-card__title-text {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.shared-moment-card .mdl-card__supporting-text { text-align: center; width: 100%; }
+
+.pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  color: #ff4081;
+  font-size: 12px;
+}
+.pending-badge .material-icons { font-size: 16px; }
+
+/* Formulario para crear publicación */
+.create-post {
+  z-index: 1001;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 56px;
+  overflow-y: auto;
+  background: #fff;
+  text-align: center;
+  padding: 16px 16px 96px;
+  transform: translateY(100vh);
+  visibility: hidden;
+  transition: transform 0.3s, visibility 0.3s;
+}
+.create-post.is-open { transform: translateY(0); visibility: visible; }
+.create-post form { max-width: 480px; margin: 0 auto; }
+
+.capture video,
+.capture .preview {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  margin: 0 auto 8px;
+  border-radius: 4px;
+  background: #000;
+}
+.capture-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.file-button { position: relative; overflow: hidden; }
+.file-button input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.create-post .mdl-button .material-icons { vertical-align: middle; font-size: 18px; }
+
+.field { display: block; text-align: left; margin: 16px 0; }
+.field span { display: block; font-size: 12px; color: #3f51b5; margin-bottom: 4px; }
+.field input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #bdbdbd;
+  outline: none;
+  background: transparent;
+}
+.field input:focus { border-bottom: 2px solid #3f51b5; }
+.coords { font-size: 12px; color: #757575; margin: 4px 0 0; }
+.form-actions { margin-top: 24px; }
+
+.close-button { margin-top: 24px; }
